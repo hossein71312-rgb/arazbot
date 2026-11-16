@@ -1,0 +1,10 @@
+{
+  "feeds": [
+    {"name": "دیجیاتو", "url": "https://digiato.com/feed"},
+    {"name": "زومیت", "url": "https://www.zoomit.ir/feed/"}
+  ],
+  "max_per_run": 1,
+  "max_age_hours": 24,
+  "desc_chars": 220,
+  "hashtag": "#اخبار_تکنولوژی"
+}

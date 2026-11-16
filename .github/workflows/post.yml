@@ -1,0 +1,36 @@
+name: News Post
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'test یا post'
+        default: 'post'
+permissions:
+  contents: write
+concurrency:
+  group: news
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Run
+        env:
+          RUBIKA_TOKEN: ${{ secrets.RUBIKA_TOKEN }}
+          RUBIKA_CHAT_ID: ${{ secrets.RUBIKA_CHAT_ID }}
+        run: python post.py ${{ github.event.inputs.mode || 'post' }}
+      - name: Save state
+        if: ${{ (github.event.inputs.mode || 'post') != 'test' }}
+        run: |
+          [ -f state.json ] || exit 0
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add state.json
+          git commit -m "state" || exit 0
+          git push

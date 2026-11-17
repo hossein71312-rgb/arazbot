@@ -2,6 +2,8 @@
   "feeds": [
     {"name": "دیجیاتو", "url": "https://digiato.com/feed"},
     {"name": "زومیت", "url": "https://www.zoomit.ir/feed/"}
+      {"name": "تکنا", "url": "https://www.techna.news//feed/"}
+       {"name": "دیجنوی", "url": "https://www.diginoy.com//feed/"}
   ],
   "max_per_run": 1,
   "max_age_hours": 24,
